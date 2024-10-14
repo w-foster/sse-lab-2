@@ -30,6 +30,11 @@ def hello_world():
 
 @app.route("/submit", methods=["POST"])
 def submit():
+    input_answer = int(request.form.get("answer"))
+    if input_answer == correct_answer:
+        is_correct = True
+    else:
+        is_correct = False
     return render_template("hello.html")
 
 
