@@ -50,7 +50,7 @@ def submit():
         is_correct = True  # Used by front-end to show whether ans was correct or not
     else:
         is_correct = False
-    return render_template("hello.html", correct_answer=session["correct_answer"], is_correct=is_correct, total_answers_count=session["total_answers_count"], correct_answers_count=session["correct_answers_count"])
+    return render_template("answer_result.html", correct_answer=session["correct_answer"], is_correct=is_correct, total_answers_count=session["total_answers_count"], correct_answers_count=session["correct_answers_count"])
 
 
 
