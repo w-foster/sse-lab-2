@@ -9,8 +9,8 @@ correct_answer = 0 # this will store the correct answer to the current Q
 @app.route("/")
 def hello_world():
     global correct_answer
-    random_one = random.randint(3, 1000)
-    random_two = random.randint(3, 1000)
+    random_one = random.randint(3, 75)
+    random_two = random.randint(3, 75)
     i = random.randint(0, 2)
     if i == 0:
         # addition
