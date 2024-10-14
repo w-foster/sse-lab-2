@@ -24,15 +24,12 @@ def hello_world():
         # multiplication
         random_operator = "*"
         correct_answer = random_one * random_two
-    question_string = str(random_one + " " + random_operator + " " + random_two)
-	return render_template("index.html", question=question_string)
+    question_string = str(random_one) + " " + random_operator + " " + str(random_two)
+    return render_template("index.html", question=question_string)
 
 
 @app.route("/submit", methods=["POST"])
 def submit():
-	input_answer = request.form.get("answer")
-    int_input_answer = int(input_answer)
-    age_squared = int_age * int_age
-    return render_template("hello.html", name=input_name, age=input_age, age_squared=age_squared)
+    return render_template("hello.html")
 
 
