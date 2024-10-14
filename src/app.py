@@ -8,6 +8,7 @@ correct_answer = 0 # this will store the correct answer to the current Q
 
 @app.route("/")
 def hello_world():
+    global correct_answer
     random_one = random.randint(3, 1000)
     random_two = random.randint(3, 1000)
     i = random.randint(0, 2)
@@ -23,16 +24,15 @@ def hello_world():
         # multiplication
         random_operator = "*"
         correct_answer = random_one * random_two
-    question = str(random_one + " " + random_operator + " " + random_two)
-	return render_template("index.html", question=question)
+    question_string = str(random_one + " " + random_operator + " " + random_two)
+	return render_template("index.html", question=question_string)
 
 
 @app.route("/submit", methods=["POST"])
 def submit():
 	input_answer = request.form.get("answer")
     int_input_answer = int(input_answer)
-
-	age_squared = int_age * int_age
-	return render_template("hello.html", name=input_name, age=input_age, age_squared=age_squared)
+    age_squared = int_age * int_age
+    return render_template("hello.html", name=input_name, age=input_age, age_squared=age_squared)
 
 
