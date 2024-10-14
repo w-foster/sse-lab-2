@@ -6,18 +6,15 @@
  </head>
  <body>
 	{% if is_correct %}
-	 <p> You are correct</p>
+	 <p> You are correct. Soon you may become a maths wizard.</p>
 	 {% else %}
-	 <h1> You are Wrong!!!</h1>
-	 <p> this is a simple question! </p>
-	 <p>The correct answer is: {{correct_answer}} </p>
+	 <h1> You are wrong!!!</h1>
+	 <p> This is a simple question... </p>
+	 <p>The correct answer is {{correct_answer}}, of course!</p>
 	{% endif %}
 	 <p>Your score is {{total_answers_count}} / {{correct_answers_count}}</p>
 	 <form action="/question" method="GET">
 		<button type="submit">NEXT QUESTION</button>
 	 </form> 
-	<p></p>
-	<a href="/" class="button">Home</a>
-	<p></p>
  </body>
 </html>
