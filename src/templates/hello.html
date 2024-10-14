@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Most Epic Maths Website</title>
-</head>
-<body>
+ <head>
+	 <meta charset="UTF-8">
+	 <title>Most Epic Maths Website</title>
+ </head>
+ <body>
 	{% if is_correct %}
-	<p> You are correct</p>
-	{% else %}
-	<p> You are Wrong!!!!! </p>
-	<p>The correct answer is: {{correct_answer}} </p>
+	 <p> You are correct</p>
+	 {% else %}
+	 <h1> You are Wrong!!!</h1>
+	 <p> this is a simple question! </p>
+	 <p>The correct answer is: {{correct_answer}} </p>
 	{% endif %}
-	<p>Current score: {{correct_answers_count}} / {{total_answers_count}}
-	<form action="/question" method="GET">
-		<button type="submit">NEXT QUESTION</button>
-	</form>
-</body>
+
+	<p></p>
+	<a href="/" class="button">Home</a>
+	<p></p>
+ </body>
 </html>

@@ -53,3 +53,4 @@ def submit():
     return render_template("hello.html", correct_answer=session["correct_answer"], is_correct=is_correct, total_answers_count=session["total_answers_count"], correct_answers_count=session["correct_answers_count"])
 
 
+
