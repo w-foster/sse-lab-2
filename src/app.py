@@ -53,8 +53,13 @@ def submit():
         is_correct = True  # Used by front-end to display conditional messages
     else:
         is_correct = False
+    if session["total_answers_count"] >= 5:
+        return final_score()
     return render_template("answer_result.html", correct_answer=session["correct_answer"], is_correct=is_correct, total_answers_count=session["total_answers_count"], correct_answers_count=session["correct_answers_count"])
 
+@app.route("/final_score")
+def final_score():
+    return render_template("final_score.html", correct_answers_count=session["correct_answers_count"], total_answers_count=session["total_answers_count"])
 
 if __name__ == "__main__":
     app.run(debug=True)
