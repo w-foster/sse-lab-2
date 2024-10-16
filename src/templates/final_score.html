@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	 <meta charset="UTF-8">
+	 <title>Most Epic Maths Website</title>
+ </head>
+ <body>
+	 <h2>Your final score is {{correct_answers_count}} / {{total_answers_count}}</h2>
+	 {% if correct_answers_count >= 4 %}
+	 <p>Very well done!</p>
+	 {% elif correct_answers_count == 3 %}
+	 <p>Good job. You're getting there!</p>
+	 {% elif correct_answers_count <= 2 %}
+	 <p>Don't give up! Math wizard you shall be.</p>
+	 {% endif %}
+	 <form action="/new_game" method="GET">
+		<button type="submit">START NEW GAME</button>
+	 </form> 
+ </body>
+</html>
