@@ -3,12 +3,14 @@ import random
 import secrets
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(32) # Hardcoded session key for DEVELOPMENT ONLY
+app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
+
 
 # Landing page; immediately starts new game
 @app.route("/")
 def landing():
     return new_game()
+
 
 # Initialises session score variables to zero
 @app.route("/new_game")
@@ -16,6 +18,7 @@ def new_game():
     session["total_answers_count"] = 0
     session["correct_answers_count"] = 0
     return question()
+
 
 # Serves a randomly generated question
 @app.route("/question")
@@ -43,6 +46,7 @@ def question():
     question_string = f"{random_one} {random_operator} {random_two}"
     return render_template("index.html", question=question_string)
 
+
 # Checks user's answer and serves a results page
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -55,13 +59,23 @@ def submit():
         is_correct = False
     if session["total_answers_count"] >= 5:
         return final_score()
-    return render_template("answer_result.html", correct_answer=session["correct_answer"], is_correct=is_correct, total_answers_count=session["total_answers_count"], correct_answers_count=session["correct_answers_count"])
+    return render_template(
+        "answer_result.html",
+        correct_answer=session["correct_answer"],
+        is_correct=is_correct,
+        total_answers_count=session["total_answers_count"],
+        correct_answers_count=session["correct_answers_count"],
+    )
+
 
 @app.route("/final_score")
 def final_score():
-    return render_template("final_score.html", correct_answers_count=session["correct_answers_count"], total_answers_count=session["total_answers_count"])
+    return render_template(
+        "final_score.html",
+        correct_answers_count=session["correct_answers_count"],
+        total_answers_count=session["total_answers_count"],
+    )
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
