@@ -6,14 +6,6 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
 
 
-# Test unit test
-def process_query(query):
-    if query == "dinosaurs":
-        return "Dinosaurs ruled the Earth 200 million years ago"
-    else:
-        return "Unknown"
-
-
 # Landing page; immediately starts new game
 @app.route("/")
 def landing():
@@ -83,6 +75,15 @@ def final_score():
         correct_answers_count=session["correct_answers_count"],
         total_answers_count=session["total_answers_count"],
     )
+
+
+@app.route("/query", methods=["GET"])
+def process_query():
+    q = request.args.get("q")
+    if q == "dinosaurs":
+        return "Dinosaurs ruled the Earth 200 million years ago"
+    else:
+        return "Unknown"
 
 
 if __name__ == "__main__":
