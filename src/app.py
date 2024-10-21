@@ -6,6 +6,14 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
 
 
+# Test unit test
+def process_query(query):
+    if query == "dinosaurs":
+        return "Dinosaurs ruled the Earth 200 million years ago"
+    else:
+        return "Unknown"
+
+
 # Landing page; immediately starts new game
 @app.route("/")
 def landing():
