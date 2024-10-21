@@ -20,7 +20,7 @@ jobs:
   deploy-to-impaas:
     needs: python-formatting
     runs-on: ubuntu-latest
-      steps:
+    steps:
     - name: Checkout
       uses: actions/checkout@v4
     - name: ImPaaS-Deploy
