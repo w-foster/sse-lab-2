@@ -3,6 +3,7 @@ import random
 import secrets
 import re
 
+
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
 
@@ -90,12 +91,18 @@ def process_query(q):
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
         return max(numbers)
-
+    if "power" in q:
+        nums = re.findall(r"\d+", q)
+        numbers = [int(num) for num in nums]
+        return numbers[0] ** numbers[1]
+    if "minus" in q:
+        nums = re.findall(r"\d+", q)
+        numbers = [int(num) for num in nums]
+        return nums[1] - nums[0]
     if "plus" in q:
-        parts = q.split()
-        num1 = int(parts[2])
-        num2 = int(parts[4])
-        return str(num1 + num2)
+        nums = re.findall(r"\d+", q)
+        numbers = [int(num) for num in nums]
+        return nums[0] + nums[1] + nums[2]
     else:
         return "Unknown"
 
