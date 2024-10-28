@@ -86,6 +86,7 @@ def process_query(q):
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
     if "plus" in q:
+        return "hello"
         parts = q.split()
         num1 = int(parts[2])
         num2 = int(parts[4])
