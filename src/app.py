@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session
 import random
 import secrets
+import re
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
@@ -85,8 +86,11 @@ def query():
 def process_query(q):
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
-    else:
-        return q
+    if "largest" in q:
+        nums = re.findall(r"\d+", text)
+        numbers = [int(num) for num in numbers]
+        return max(numbers)
+
     if "plus" in q:
         return "hello"
         parts = q.split()
@@ -95,6 +99,7 @@ def process_query(q):
         return str(num1 + num2)
     else:
         return "Unknown"
+
 
 if __name__ == "__main__":
     app.run(debug=True)
