@@ -90,9 +90,7 @@ def process_query(q):
         nums = re.findall(r"\d+", text)
         numbers = [int(num) for num in numbers]
         return max(numbers)
-
     if "plus" in q:
-        return "hello"
         parts = q.split()
         num1 = int(parts[2])
         num2 = int(parts[4])
