@@ -98,11 +98,11 @@ def process_query(q):
     if "minus" in q:
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
-        return nums[1] - nums[0]
+        return numbers[1] - numbers[0]
     if "plus" in q:
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
-        return nums[0] + nums[1] + nums[2]
+        return numbers[0] + numbers[1] + numbers[2]
     else:
         return "Unknown"
 
