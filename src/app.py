@@ -89,7 +89,7 @@ def process_query(q):
     if "largest" in q:
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
-        return max(numbers)
+        return str(max(numbers))
     if "plus" in q:
         parts = q.split()
         num1 = int(parts[2])
