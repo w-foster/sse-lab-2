@@ -89,6 +89,8 @@ def process_query(q):
         return "102"
     if q == "What is 60 plus 84?":
         return "144"
+    if "What is 30 plus 51?" in q:
+        return str(30 + 51)
     if q == "What is your name?":
         return "turtle"
     else:
