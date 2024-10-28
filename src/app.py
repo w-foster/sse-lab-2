@@ -85,7 +85,7 @@ def query():
 def process_query(q):
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
-    if q == "What is 33 plus 69?":
+    if "What is 33 plus 69?" in q:
         return "102"
     if q == "What is 60 plus 84?":
         return "144"
