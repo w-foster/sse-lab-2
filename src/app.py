@@ -85,14 +85,11 @@ def query():
 def process_query(q):
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
-    if "What is 33 plus 69?" in q:
-        return "102"
-    if q == "What is 60 plus 84?":
-        return "144"
-    if "What is 30 plus 51?" in q:
-        return str(30 + 51)
-    if q == "What is your name?":
-        return "turtle"
+    if "plus" in q:
+        parts = q.split()
+        num1 = int(parts[2])
+        num2 = int(parts[4])
+        return str(num1 + num2)
     else:
         return "Unknown"
 
