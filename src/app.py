@@ -98,7 +98,7 @@ def process_query(q):
     if "minus" in q:
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
-        return str(numbers[1] - numbers[0])
+        return str(numbers[0] - numbers[1])
     if "What is" in q:
         nums = re.findall(r"\d+", q)
         numbers = [int(num) for num in nums]
