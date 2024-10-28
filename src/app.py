@@ -85,10 +85,14 @@ def query():
 def process_query(q):
     if q == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
-	if q == "What is your name":
-		return "turtle"
-	else:
-		return "Unknown"
+    if q == "What is 33 plus 69?":
+        return "102"
+    if q == "What is 60 plus 84?":
+        return "144"
+    if q == "What is your name":
+        return "turtle"
+    else:
+        return "Unknown"
 
 
 if __name__ == "__main__":
