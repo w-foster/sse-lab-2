@@ -93,6 +93,5 @@ def process_query(q):
     else:
         return "Unknown"
 
-
 if __name__ == "__main__":
     app.run(debug=True)
