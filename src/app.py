@@ -88,7 +88,7 @@ def process_query(q):
         return "Dinosaurs ruled the Earth 200 million years ago"
     if "largest" in q:
         nums = re.findall(r"\d+", text)
-        numbers = [int(num) for num in numbers]
+        numbers = [int(num) for num in nums]
         return max(numbers)
     if "plus" in q:
         parts = q.split()
