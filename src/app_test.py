@@ -1,6 +1,4 @@
 from app import process_query
-import pytest
-import re
 
 
 def test_knows__about_your_name():
