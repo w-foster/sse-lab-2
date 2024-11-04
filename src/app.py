@@ -120,10 +120,17 @@ def display_username():
     username = request.form.get("github_username")
     session["github_username"] = username
     p = requests.get(f"https://api.github.com/users/{username}/repos")
-    repos = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
+    # old = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
+    repos = [r for r in p.json()] if p.status_code == 200 else []
+    some_repos_info = []
+    for repo in repos:
+        some_repo_info = []
+        some_repo_info.append(repo["full_name"])
+        # response = requests.get(repo[])
+        some_repos_info.append(some_repo_info)
     return render_template(
         "display_username.html",
-        repos=repos,
+        repos=some_repos_info,
         github_username=session["github_username"],
     )
 
