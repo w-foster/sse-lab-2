@@ -140,7 +140,6 @@ def display_username():
         # Store the repo's name and URL
         repo_name = repo.get("full_name", "Unknown")
         repo_url = repo.get("html_url", "N/A")
-        this_repo_info["Name"] = [repo_name, repo_url]
 
         # Store default values
         recent_hash = "No commits found!"
@@ -166,11 +165,12 @@ def display_username():
                     recent_avatar = "https://picsum.photos/200"
 
         # Build out the dictionary for this repo
+        this_repo_info["Avatar"] = recent_avatar
+        this_repo_info["Name"] = [repo_name, repo_url]
         this_repo_info["Hash"] = recent_hash
         this_repo_info["Author"] = recent_author
         this_repo_info["Date"] = recent_date
         this_repo_info["Message"] = recent_message
-        this_repo_info["Avatar"] = recent_avatar
         # Add this repo's info to the list of dicts
         all_repos_info.append(this_repo_info)
 
