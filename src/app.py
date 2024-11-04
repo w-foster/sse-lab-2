@@ -122,11 +122,13 @@ def display_username():
     response = requests.get(f"https://api.github.com/users/{username}/repos")
     if response.status_code == 200:
         repos = response.json()  # returns a list of repo entities
-        session['github_repos'] = repos
+        session["github_repos"] = repos
         for repo in repos:
             print(repo["full_name"])
     return render_template(
-        "display_username.html", github_repos = session['github_repos'], github_username=session["github_username"]
+        "display_username.html",
+        github_repos=session["github_repos"],
+        github_username=session["github_username"],
     )
 
 
