@@ -4,6 +4,15 @@
 <head>
     <p>
         Hello {{github_username}}
+        {% if repos %}
+        <ul>
+            {% for repo in github_repos %}
+                <li>{{ repo }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No repositories found.</p>
+    {% endif %}
     </p>
  </head> 
 </body>
