@@ -144,6 +144,7 @@ def display_username():
                 recent_author = recent_commit["commit"]["committer"]["name"]
                 recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
+                recent_hash = recent_commit["sha"]
                 if recent_commit['author'] is not None:
                     recent_avatar = recent_commit["author"]["avatar_url"]
                 else:
@@ -152,6 +153,7 @@ def display_username():
                 recent_author = "No commits found!"
         else:
             recent_author = "Commit fetch failed"
+        some_repo_info["Hash"] = recent_hash
         some_repo_info["Author"] = recent_author
         some_repo_info["Date"] = recent_date
         some_repo_info["Message"] = recent_message
