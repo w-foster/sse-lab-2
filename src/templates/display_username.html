@@ -6,7 +6,7 @@
         Hello {{github_username}}
         {% if repos %}
         <ul>
-            {% for repo in github_repos %}
+            {% for repo in repos %}
                 <li>{{ repo }}</li>
             {% endfor %}
         </ul>
