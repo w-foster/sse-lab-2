@@ -124,10 +124,10 @@ def display_username():
         repos = response.json()  # returns a list of repo entities
         for repo in repos:
             print(repo["full_name"])
-    # return render_template(
-    #     "display_username.html",
-    #     github_username = session['github_username']
-    # )
+    return render_template(
+        "display_username.html",
+        github_username = session['github_username']
+    )
 
 
 if __name__ == "__main__":
