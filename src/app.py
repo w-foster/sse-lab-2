@@ -134,8 +134,8 @@ def display_username():
             commits = commits_response.json()
             if commits:
                 recent_commit = commits[0]
-                recent_author = recent_commit["commit"]["commitor"]["name"]
-                recent_date = recent_commit["commit"]["commitor"]["date"]
+                recent_author = recent_commit["commit"]["committer"]["name"]
+                recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
             else:
                 recent_author = "No commits found!"
