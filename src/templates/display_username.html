@@ -7,7 +7,9 @@
         {% if repos %}
         <ul>
             {% for repo in repos %}
-                <li>{{ repo }}</li>
+                {% for info in repo}
+                <li>{{ info }}</li>
+                {% endfor %}
             {% endfor %}
         </ul>
     {% else %}
