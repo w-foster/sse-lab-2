@@ -119,12 +119,8 @@ def github_form():
 def display_username():
     username = request.form.get("github_username")
     session["github_username"] = username
-    response = requests.get(f"https://api.github.com/users/{username}/repos")
-    repos = []
-    if response.status_code == 200:
-        repos = response.json()  # returns a list of repo entities!
-        for repo in repos:
-            print(repo["full_name"])
+    p = requests.get(f"https://api.github.com/users/{username}/repos")
+    repos = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
     return render_template(
         "display_username.html",
         repos=repos,
