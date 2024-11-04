@@ -106,6 +106,20 @@ def process_query(q):
     else:
         return "Unknown"
 
+# ==== GitHub Form (lab 5) ====
+
+@app.route('/github_form')
+def github_form():
+    return render_template("github_form.html")
+
+@app.route('/display_username', methods=['POST'])
+def display_username():
+    username = request.form.get("github_username")
+    session['github_username'] = username
+    return render_template(
+        "display_username.html",
+        github_username = session['github_username']
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
