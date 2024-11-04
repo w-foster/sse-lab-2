@@ -10,7 +10,7 @@
         <ul>
             {% for key, value in repo.items() %}
             {% if key == "Avatar" %}
-                <li><strong>{{ key }}: </strong><img src="{{ value }}" width="300"></li>
+                <li><img src="{{ value }}" width="50"></li>
             {% else %}
                 <li><strong>{{ key }}: </strong>{{ value }}</li>
             {% endif %}
