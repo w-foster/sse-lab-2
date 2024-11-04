@@ -57,7 +57,7 @@
                         {% for key, value in repo.items() %}
                             {% if key == "Avatar" %}
                                 <td><img src="{{ value }}" width="50" alt="Avatar"></td>
-                            {% elif key == "Name" %}
+                            {% elif key == "Repository Name" %}
                                 <td><a href="{{ value[1] }}">{{ value[0] }}</a></td>
                             {% elif key == "Author" %}
                                 <td>{{ value }}</td>
