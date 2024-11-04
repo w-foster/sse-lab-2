@@ -111,57 +111,76 @@ def process_query(q):
 # ==== GitHub Form (lab 5) ====
 
 
+# Serves the user with a form to enter a GitHub username
 @app.route("/github_form")
 def github_form():
     return render_template("github_form.html")
 
 
+# Endpoint redirected to after a submission to the github_form page
 @app.route("/display_username", methods=["POST"])
 def display_username():
+    # Retrieve Tsuru env var: GitHub Access Token (for higher API rate limits)
     GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    # Prepare a key/value pair with the token to use during requests
     headers = {"Authorization": f"token {GITHUB_TOKEN}"}
 
+    # Get the entered username and initialise a session var to store it
     username = request.form.get("github_username")
     session["github_username"] = username
+    # Build an API URL, and make a call
     my_url = f"https://api.github.com/users/{username}/repos"
-    p = requests.get(my_url, headers=headers)
-    # old = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
-    repos = [r for r in p.json()] if p.status_code == 200 else []
-    if repos is None:
-        return "User not found!"
-    some_repos_info = []
+    rsp = requests.get(my_url, headers=headers)
+    # Initialise a list containing every repo's info in JSON form
+    repos = [r for r in rsp.json()] if rsp.status_code == 200 else []
+
+    all_repos_info = []  # empty list to store the repo info dicts
     for repo in repos:
-        some_repo_info = {}
-        name = repo["full_name"]
-        some_repo_info["Name"] = [name, repo["html_url"]]
-        # response = requests.get(repo[])
-        url = f"https://api.github.com/repos/{name}/commits"
-        commits_response = requests.get(url, headers=headers)
+        this_repo_info = {}  # empty dict to store this repo's info
+        # Store the repo's name and URL
+        repo_name = repo.get("full_name", "Unknown")
+        repo_url = repo.get("html_url", "N/A")
+        this_repo_info["Name"] = [repo_name, repo_url]
+
+        # Store default values
+        recent_author = "No commits found!"
+        recent_date = "N/A"
+        recent_message = "N/A"
+        recent_avatar = "https://t.ly/rH1hH"  # N/A img
+
+        # Make another call to get info on commits
+        commits_url = f"https://api.github.com/repos/{repo_name}/commits"
+        commits_response = requests.get(commits_url, headers=headers)
         if commits_response.status_code == 200:
             commits = commits_response.json()
-            if commits:
+            if commits and isinstance(commits, list):
                 recent_commit = commits[0]
                 recent_author = recent_commit["commit"]["committer"]["name"]
                 recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
                 recent_hash = recent_commit["sha"]
-                if recent_commit['author'] is not None:
+                if recent_commit["author"] is not None:
                     recent_avatar = recent_commit["author"]["avatar_url"]
                 else:
                     recent_avatar = "https://picsum.photos/200"
             else:
-                recent_author = "No commits found!"
+                recent_author = commits.get("message", "No commits found!")
         else:
-            recent_author = "Commit fetch failed"
-        some_repo_info["Hash"] = recent_hash
-        some_repo_info["Author"] = recent_author
-        some_repo_info["Date"] = recent_date
-        some_repo_info["Message"] = recent_message
-        some_repo_info["Avatar"] = recent_avatar
-        some_repos_info.append(some_repo_info)
+            commits_error = commits_response.status_code
+            recent_author = f"Commit fetch failed ({commits_error})"
+
+        # Build out the dictionary for this repo
+        this_repo_info["Hash"] = recent_hash
+        this_repo_info["Author"] = recent_author
+        this_repo_info["Date"] = recent_date
+        this_repo_info["Message"] = recent_message
+        this_repo_info["Avatar"] = recent_avatar
+        # Add this repo's info to the list of dicts
+        all_repos_info.append(this_repo_info)
+
     return render_template(
         "display_username.html",
-        repos=some_repos_info,
+        repos=all_repos_info,
         github_username=session["github_username"],
     )
 
