@@ -137,6 +137,7 @@ def display_username():
                 recent_author = recent_commit["commit"]["committer"]["name"]
                 recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
+                recent_avatar = recent_commit['commit']['author']['avatar_url']
             else:
                 recent_author = "No commits found!"
         else:
@@ -144,6 +145,7 @@ def display_username():
         some_repo_info["Author"] = recent_author
         some_repo_info["Date"] = recent_date
         some_repo_info["Message"] = recent_message
+        some_repo_info["Avatar"] = recent_avatar
         some_repos_info.append(some_repo_info)
     return render_template(
         "display_username.html",
