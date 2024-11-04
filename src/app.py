@@ -3,6 +3,7 @@ import random
 import secrets
 import re
 import requests
+import os
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)  # Hardcoded session key for DEV ONLY
@@ -117,9 +118,13 @@ def github_form():
 
 @app.route("/display_username", methods=["POST"])
 def display_username():
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+
     username = request.form.get("github_username")
     session["github_username"] = username
-    p = requests.get(f"https://api.github.com/users/{username}/repos")
+    my_url = f"https://api.github.com/users/{username}/repos"
+    p = requests.get(my_url, headers=headers)
     # old = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
     repos = [r for r in p.json()] if p.status_code == 200 else []
     some_repos_info = []
@@ -129,7 +134,7 @@ def display_username():
         some_repo_info["Name"] = name
         # response = requests.get(repo[])
         url = f"https://api.github.com/repos/{name}/commits"
-        commits_response = requests.get(url)
+        commits_response = requests.get(url, headers=headers)
         if commits_response.status_code == 200:
             commits = commits_response.json()
             if commits:
@@ -137,7 +142,6 @@ def display_username():
                 recent_author = recent_commit["commit"]["committer"]["name"]
                 recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
-                recent_avatar = recent_commit['commit']['author']['avatar_url']
             else:
                 recent_author = "No commits found!"
         else:
@@ -145,7 +149,6 @@ def display_username():
         some_repo_info["Author"] = recent_author
         some_repo_info["Date"] = recent_date
         some_repo_info["Message"] = recent_message
-        some_repo_info["Avatar"] = recent_avatar
         some_repos_info.append(some_repo_info)
     return render_template(
         "display_username.html",
