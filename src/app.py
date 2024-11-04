@@ -106,33 +106,28 @@ def process_query(q):
     else:
         return "Unknown"
 
+
 # ==== GitHub Form (lab 5) ====
 
-@app.route('/github_form')
+
+@app.route("/github_form")
 def github_form():
     return render_template("github_form.html")
 
-@app.route('/display_username', methods=['POST'])
+
+@app.route("/display_username", methods=["POST"])
 def display_username():
     username = request.form.get("github_username")
-    session['github_username'] = username
+    session["github_username"] = username
     response = requests.get(f"https://api.github.com/users/{username}/repos")
     if response.status_code == 200:
-        repos = response.json() # data returned is a list of ‘repository’ entities
+        repos = response.json()  # returns a list of repo entities
         for repo in repos:
             print(repo["full_name"])
     # return render_template(
     #     "display_username.html",
     #     github_username = session['github_username']
     # )
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
