@@ -142,7 +142,10 @@ def display_username():
                 recent_author = recent_commit["commit"]["committer"]["name"]
                 recent_date = recent_commit["commit"]["committer"]["date"]
                 recent_message = recent_commit["commit"]["message"]
-                recent_avatar = recent_commit["author"]["avatar_url"]
+                if recent_commit['author'] is not None:
+                    recent_avatar = recent_commit["author"]["avatar_url"]
+                else:
+                    recent_avatar = "https://www.pixelsquid.com/png/thing-addams-family-character-3108736172260595293"
             else:
                 recent_author = "No commits found!"
         else:
