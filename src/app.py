@@ -133,7 +133,7 @@ def display_username():
     for repo in repos:
         some_repo_info = {}
         name = repo["full_name"]
-        some_repo_info["Name"] = name
+        some_repo_info["Name"] = [name, repo["html_url"]]
         # response = requests.get(repo[])
         url = f"https://api.github.com/repos/{name}/commits"
         commits_response = requests.get(url, headers=headers)
