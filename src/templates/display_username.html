@@ -3,22 +3,23 @@
 <body> 
 <head>
     <p>
-        Hello {{github_username}}
-        {% if repos %}
+    Hello {{github_username}}
+    {% if repos %}
         ...here are your repos:
         {% for repo in repos %}
-        <ul>
+            <ul>
             {% for key, value in repo.items() %}
-            {% if key == "Avatar" %}
+                {% if key == "Avatar" %}
                 <li style="list-style-type: none;">
                 <img src="{{ value }}" width="50"></li>
-                    {% elif key == "Name" %}
-                    <li><strong>{{ key }} : </strong> <a href="{{ value[1]}}"> {{value[0]}}</a>
-            {% else %}
+                {% elif key == "Name" %}
+                <li><strong>{{ key }} : </strong> <a href="{{ value[1] }}"> {{value[0]}}</a>
+                <li style="list-style-type: none;">Latest Commit:</li>
+                {% else %}
                 <li><strong>{{ key }}: </strong>{{ value }}</li>
-            {% endif %}
+                {% endif %}
             {% endfor %}
-        </ul>
+            </ul>
         </br>
         {% endfor %}
     {% else %}
