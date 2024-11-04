@@ -144,6 +144,7 @@ def display_username():
 
         # Store default values
         recent_author = "No commits found!"
+        recent_hash = "N/A"
         recent_date = "N/A"
         recent_message = "N/A"
         recent_avatar = "https://t.ly/rH1hH"  # N/A img
