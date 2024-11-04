@@ -143,8 +143,8 @@ def display_username():
         this_repo_info["Name"] = [repo_name, repo_url]
 
         # Store default values
-        recent_author = "No commits found!"
-        recent_hash = "N/A"
+        recent_hash = "No commits found!"
+        recent_author = "N/A"
         recent_date = "N/A"
         recent_message = "N/A"
         recent_avatar = "https://t.ly/rH1hH"  # N/A img
@@ -164,11 +164,6 @@ def display_username():
                     recent_avatar = recent_commit["author"]["avatar_url"]
                 else:
                     recent_avatar = "https://picsum.photos/200"
-            else:
-                recent_author = commits.get("message", "No commits found!")
-        else:
-            commits_error = commits_response.status_code
-            recent_author = f"Commit fetch failed ({commits_error})"
 
         # Build out the dictionary for this repo
         this_repo_info["Hash"] = recent_hash
