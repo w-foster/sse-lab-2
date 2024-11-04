@@ -127,6 +127,8 @@ def display_username():
     p = requests.get(my_url, headers=headers)
     # old = [r["full_name"] for r in p.json()] if p.status_code == 200 else []
     repos = [r for r in p.json()] if p.status_code == 200 else []
+    if repos is None:
+        return "User not found!"
     some_repos_info = []
     for repo in repos:
         some_repo_info = {}
