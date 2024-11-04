@@ -124,9 +124,9 @@ def display_username():
     repos = [r for r in p.json()] if p.status_code == 200 else []
     some_repos_info = []
     for repo in repos:
-        some_repo_info = []
+        some_repo_info = {}
         name = repo["full_name"]
-        some_repo_info.append(name)
+        some_repo_info["Name"] = name
         # response = requests.get(repo[])
         url = f"https://api.github.com/repos/{name}/commits"
         commits_response = requests.get(url)
@@ -141,9 +141,9 @@ def display_username():
                 recent_author = "No commits found!"
         else:
             recent_author = "Commit fetch failed"
-        some_repo_info.append(recent_author)
-        some_repo_info.append(recent_date)
-        some_repo_info.append(recent_message)
+        some_repo_info["Author"] = recent_author
+        some_repo_info["Date"] = recent_date
+        some_repo_info["Message"] = recent_message
         some_repos_info.append(some_repo_info)
     return render_template(
         "display_username.html",

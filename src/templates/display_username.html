@@ -5,13 +5,15 @@
     <p>
         Hello {{github_username}}
         {% if repos %}
+        ...here are your repos:
+        {% for repo in repos %}
         <ul>
-            {% for repo in repos %}
-                {% for info in repo %}
-                <li>{{ info }}</li>
-                {% endfor %}
+            {% for key, value in repo.items() %}
+            <li><strong>{{ key }}: </strong>{{ value }}</li>
             {% endfor %}
         </ul>
+        </br>
+        {% endfor %}
     {% else %}
         <p>No repositories found.</p>
     {% endif %}
