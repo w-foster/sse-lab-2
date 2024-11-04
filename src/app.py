@@ -145,7 +145,7 @@ def display_username():
                 if recent_commit['author'] is not None:
                     recent_avatar = recent_commit["author"]["avatar_url"]
                 else:
-                    recent_avatar = "https://www.pixelsquid.com/png/thing-addams-family-character-3108736172260595293"
+                    recent_avatar = "https://picsum.photos/200"
             else:
                 recent_author = "No commits found!"
         else:
