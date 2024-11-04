@@ -126,7 +126,7 @@ def display_username():
             print(repo["full_name"])
     return render_template(
         "display_username.html",
-        repos = repos,
+        repos=repos,
         github_username=session["github_username"],
     )
 
