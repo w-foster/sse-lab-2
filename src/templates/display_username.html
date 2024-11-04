@@ -1,31 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<body> 
 <head>
-    <p>
-    Hello {{github_username}}
+    <meta charset="UTF-8">
+    <title>GitHub Repositories</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        img {
+            border-radius: 50%;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, {{ github_username }}</h1>
+    
     {% if repos %}
-        ...here are your repos:
-        {% for repo in repos %}
-            <ul>
-            {% for key, value in repo.items() %}
-                {% if key == "Avatar" %}
-                <li style="list-style-type: none;">
-                <img src="{{ value }}" width="50"></li>
-                {% elif key == "Name" %}
-                <li><strong>{{ key }} : </strong> <a href="{{ value[1] }}"> {{value[0]}}</a>
-                <li style="list-style-type: none;">Latest Commit:</li>
-                {% else %}
-                <li><strong>{{ key }}: </strong>{{ value }}</li>
-                {% endif %}
-            {% endfor %}
-            </ul>
-        </br>
-        {% endfor %}
+        <p>Here are your repositories:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for repo in repos %}
+                    <tr>
+                        {% for key, value in repo.items() %}
+                            {% if key == "Avatar" %}
+                                <td><img src="{{ value }}" width="50" alt="Avatar"></td>
+                            {% elif key == "Name" %}
+                                <td><a href="{{ value[1] }}">{{ value[0] }}</a></td>
+                            {% elif key == "Author" %}
+                                <td>{{ value }}</td>
+                            {% elif key == "Date" %}
+                                <td>{{ value }}</td>
+                            {% elif key == "Message" %}
+                                <td>{{ value }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         <p>No repositories found.</p>
     {% endif %}
-    </p>
- </head> 
 </body>
 </html>
