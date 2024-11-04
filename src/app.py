@@ -125,8 +125,7 @@ def display_username():
         for repo in repos:
             print(repo["full_name"])
     return render_template(
-        "display_username.html",
-        github_username = session['github_username']
+        "display_username.html", github_username=session["github_username"]
     )
 
 
