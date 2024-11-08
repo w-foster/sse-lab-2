@@ -167,9 +167,9 @@ def display_username():
         # Build out the dictionary for this repo
         this_repo_info["Avatar"] = recent_avatar
         this_repo_info["Repository Name"] = [repo_name, repo_url]
-        this_repo_info["Hash"] = recent_hash
         this_repo_info["Author"] = recent_author
         this_repo_info["Date"] = recent_date
+        this_repo_info["Hash"] = recent_hash
         this_repo_info["Message"] = recent_message
         # Add this repo's info to the list of dicts
         all_repos_info.append(this_repo_info)
