@@ -48,6 +48,7 @@
                     <th>Repository Name</th>
                     <th>Author</th>
                     <th>Date</th>
+                    <th>Hash</th>
                     <th>Message</th>
                 </tr>
             </thead>
@@ -62,6 +63,8 @@
                             {% elif key == "Author" %}
                                 <td>{{ value }}</td>
                             {% elif key == "Date" %}
+                                <td>{{ value }}</td>
+                            {% elif key == "Hash" %}
                                 <td>{{ value }}</td>
                             {% elif key == "Message" %}
                                 <td>{{ value }}</td>
